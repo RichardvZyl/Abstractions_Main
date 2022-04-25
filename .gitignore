@@ -1,0 +1,16 @@
+﻿.vs/Abstractions/DesignTimeBuild
+.vs/Abstractions/v17
+AspNetCore/bin/Debug/net6.0
+AspNetCore/obj/Debug/net6.0/ref
+AspNetCore/obj/Debug/net6.0
+AspNetCore/obj
+AuditTrail/obj
+AuditTrail/bin
+bin
+Concurrency/obj
+Domain/obj
+EntityFrameworkCore/obj
+Extensions/obj
+IoC/obj
+Logging/obj
+obj
