@@ -1,8 +1,6 @@
-﻿using Abstractions.Results;
-using Microsoft.AspNetCore.Mvc;
-using IResult = Abstractions.Results.IResult;
+﻿using Microsoft.AspNetCore.Mvc;
 
-namespace Abstractions.AspNetCore;
+namespace Abstractions.Results;
 
 public static class ResultExtensions
 {

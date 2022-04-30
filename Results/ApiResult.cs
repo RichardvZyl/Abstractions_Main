@@ -1,7 +1,6 @@
-﻿using Abstractions.Results;
-using Microsoft.AspNetCore.Mvc;
+﻿using Microsoft.AspNetCore.Mvc;
 
-namespace Abstractions.AspNetCore;
+namespace Abstractions.Results;
 
 public class ApiResult : IActionResult
 {
@@ -18,6 +17,7 @@ public class ApiResult : IActionResult
 
     public static IActionResult Create(object? data)
         => new ApiResult(data);
+
 
     public async Task ExecuteResultAsync(ActionContext context)
     {

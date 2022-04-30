@@ -6,7 +6,7 @@ public class Result : IResult
 
     public bool Failed => !Succeeded;
 
-    public string Message { get; init; } = "";
+    public string Message { get; init; } = string.Empty;
 
     public bool Succeeded { get; init; }
 

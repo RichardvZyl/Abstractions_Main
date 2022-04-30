@@ -25,13 +25,11 @@ public static class IoCExtensions
             .GetRequiredService<IConfiguration>()
             .GetConnectionString(name);
 
-    public static string GetSecrets(this IServiceCollection services, string name)
-    {
-        return services
+    public static string GetSecrets(this IServiceCollection services, string name) 
+        => services
             .BuildServiceProvider()
             .GetRequiredService<IConfiguration>()
             .GetSection("Secrets")?[name] ?? string.Empty;
-    }
 
     public static void AddConfigurationsFromAssembly(this ModelBuilder modelBuilder)
     {
