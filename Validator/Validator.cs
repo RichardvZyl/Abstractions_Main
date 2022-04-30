@@ -13,6 +13,6 @@ public abstract class Validator<T> : AbstractValidator<T>
 
         return result.IsValid
             ? await Result.SuccessAsync()
-            : await Result.FailAsync(result.ToString());
+            : await Result.FailAsync(result.ToString(), 400);
     }
 }
