@@ -22,86 +22,52 @@ jobs:
           NUGET_AUTH_TOKEN: ${{secrets.NUGET_API_KEY}}        
           
       - name: Build solution and generate NuGet package
-        run: |  
-          cd AspNetCore
-          dotnet pack -c Release -o out  
+        run: dotnet pack -c Release -o out  
 
       - name: Push generated AspNetCore package to GitHub registry
-        run: |
-          cd ../AspNetCore
-          dotnet nuget push ./AspNetCore/out/*.nupkg --api-key ${{secrets.NUGET_API_KEY}} --skip-duplicate
+        run: dotnet nuget push ./AspNetCore/out/*.nupkg --api-key ${{secrets.NUGET_API_KEY}} --skip-duplicate
         
       - name: Push generated AuditTrail package to GitHub registry
-        run: |
-          cd ../AuditTrail
-          dotnet nuget push ./AuditTrail/out/*.nupkg --api-key ${{secrets.NUGET_API_KEY}} --skip-duplicate
+        run: dotnet nuget push ./AuditTrail/out/*.nupkg --api-key ${{secrets.NUGET_API_KEY}} --skip-duplicate
         
       - name: Push generated Concurrency package to GitHub registry
-        run: |
-          cd ../Concurrency
-          dotnet nuget push ./Concurrency/out/*.nupkg --api-key ${{secrets.NUGET_API_KEY}} --skip-duplicate
+        run: dotnet nuget push ./Concurrency/out/*.nupkg --api-key ${{secrets.NUGET_API_KEY}} --skip-duplicate
         
       - name: Push generated Domain package to GitHub registry
-        run: |
-          cd ../Domain
-          dotnet nuget push ./Domain/out/*.nupkg --api-key ${{secrets.NUGET_API_KEY}} --skip-duplicate
+        run: dotnet nuget push ./Domain/out/*.nupkg --api-key ${{secrets.NUGET_API_KEY}} --skip-duplicate
         
       - name: Push generated Entitlement package to GitHub registry
-        run: |
-          cd ../Entitlement
-          dotnet nuget push ./Entitlement/out/*.nupkg --api-key ${{secrets.NUGET_API_KEY}} --skip-duplicate
+        run: dotnet nuget push ./Entitlement/out/*.nupkg --api-key ${{secrets.NUGET_API_KEY}} --skip-duplicate
         
       - name: Push generated EntityFrameworkCore package to GitHub registry
-        run: | 
-          cd ../EntityFrameworkCore
-          dotnet nuget push ./EntityFrameworkCore/out/*.nupkg --api-key ${{secrets.NUGET_API_KEY}} --skip-duplicate
+        run: dotnet nuget push ./EntityFrameworkCore/out/*.nupkg --api-key ${{secrets.NUGET_API_KEY}} --skip-duplicate
         
       - name: Push generated Extensions package to GitHub registry
-        run: |
-          cd ../Extensions
-          dotnet nuget push ./Extensions/out/*.nupkg --api-key ${{secrets.NUGET_API_KEY}} --skip-duplicate
+        run: dotnet nuget push ./Extensions/out/*.nupkg --api-key ${{secrets.NUGET_API_KEY}} --skip-duplicate
         
       - name: Push generated IoC package to GitHub registry
-        run: |
-          cd ../IoC
-          dotnet nuget push ./IoC/out/*.nupkg --api-key ${{secrets.NUGET_API_KEY}} --skip-duplicate
+        run: dotnet nuget push ./IoC/out/*.nupkg --api-key ${{secrets.NUGET_API_KEY}} --skip-duplicate
         
       - name: Push generated Logging package to GitHub registry
-        run: |
-          cd ../Logging
-          dotnet nuget push ./Logging/out/*.nupkg --api-key ${{secrets.NUGET_API_KEY}} --skip-duplicate
+        run: dotnet nuget push ./Logging/out/*.nupkg --api-key ${{secrets.NUGET_API_KEY}} --skip-duplicate
         
       - name: Push generated Objects package to GitHub registry
-        run: |
-          cd ../Objects
-          dotnet nuget push ./Objects/out/*.nupkg --api-key ${{secrets.NUGET_API_KEY}} --skip-duplicate
+        run: dotnet nuget push ./Objects/out/*.nupkg --api-key ${{secrets.NUGET_API_KEY}} --skip-duplicate
         
       - name: Push generated Regex package to GitHub registry
-        run: |
-          cd ../Regex
-          dotnet nuget push ./Regex/out/*.nupkg --api-key ${{secrets.NUGET_API_KEY}} --skip-duplicate
+        run: dotnet nuget push ./Regex/out/*.nupkg --api-key ${{secrets.NUGET_API_KEY}} --skip-duplicate
         
       - name: Push generated Repositories package to GitHub registry
-        run: |
-          cd ../Repositories
-          dotnet nuget push ./Repositories/out/*.nupkg --api-key ${{secrets.NUGET_API_KEY}} --skip-duplicate
+        run: dotnet nuget push ./Repositories/out/*.nupkg --api-key ${{secrets.NUGET_API_KEY}} --skip-duplicate
         
       - name: Push generated Results package to GitHub registry
-        run: |
-          cd ../Results
-          dotnet nuget push ./Results/out/*.nupkg --api-key ${{secrets.NUGET_API_KEY}} --skip-duplicate
+        run: dotnet nuget push ./Results/out/*.nupkg --api-key ${{secrets.NUGET_API_KEY}} --skip-duplicate
         
       - name: Push generated Security package to GitHub registry
-        run: |
-          cd ../Security
-          dotnet nuget push ./Security/out/*.nupkg --api-key ${{secrets.NUGET_API_KEY}} --skip-duplicate
+        run: dotnet nuget push ./Security/out/*.nupkg --api-key ${{secrets.NUGET_API_KEY}} --skip-duplicate
         
       - name: Push generated Swagger package to GitHub registry
-        run: |
-          cd ../Swagger
-          dotnet nuget push ./Swagger/out/*.nupkg --api-key ${{secrets.NUGET_API_KEY}} --skip-duplicate
+        run: dotnet nuget push ./Swagger/out/*.nupkg --api-key ${{secrets.NUGET_API_KEY}} --skip-duplicate
         
       - name: Push generated Validator package to GitHub registry
-        run: |
-          cd ../Validator
-          dotnet nuget push ./Validator/out/*.nupkg --api-key ${{secrets.NUGET_API_KEY}} --skip-duplicate
+        run: dotnet nuget push ./Validator/out/*.nupkg --api-key ${{secrets.NUGET_API_KEY}} --skip-duplicate
