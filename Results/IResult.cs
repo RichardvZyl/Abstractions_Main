@@ -1,5 +1,7 @@
 ﻿namespace Abstractions.Results;
 
+// TODO: Allow multiple messages with IEnumerable and implement
+
 public interface IResult
 {
     bool Failed { get; }
