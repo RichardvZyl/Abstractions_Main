@@ -6,6 +6,12 @@
     <Nullable>enable</Nullable>
 	<IncludeSymbols>true</IncludeSymbols>
 	<SymbolPackageFormat>snupkg</SymbolPackageFormat>
+	<PackageId>Objects</PackageId>
+	<Version>1.0.0</Version>
+	<Authors>RichardvZyl</Authors>
+	<Company>GitHub</Company>
+	<PackageDescription>Abstractions that allow for easier interactions between database objects with pageing and file extensions</PackageDescription>
+	<RepositoryUrl>https://github.com/RichardvZyl/Abstractions</RepositoryUrl>
   </PropertyGroup>
 
   <ItemGroup>

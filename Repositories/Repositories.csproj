@@ -6,6 +6,12 @@
     <Nullable>enable</Nullable>
 	<IncludeSymbols>true</IncludeSymbols>
 	<SymbolPackageFormat>snupkg</SymbolPackageFormat>
+	<PackageId>Repositories</PackageId>
+	<Version>1.0.0</Version>
+	<Authors>RichardvZyl</Authors>
+	<Company>GitHub</Company>
+	<PackageDescription>Centralizes common data access functionality, providing better maintainability and decoupling the infrastructure or technology used to access databases from the domain model layer</PackageDescription>
+	<RepositoryUrl>https://github.com/RichardvZyl/Abstractions</RepositoryUrl>
   </PropertyGroup>
 
   <ItemGroup>

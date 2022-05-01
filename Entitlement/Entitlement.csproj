@@ -4,6 +4,14 @@
     <TargetFramework>net6.0</TargetFramework>
     <ImplicitUsings>enable</ImplicitUsings>
     <Nullable>enable</Nullable>
+	<IncludeSymbols>true</IncludeSymbols>
+	<SymbolPackageFormat>snupkg</SymbolPackageFormat>
+	<PackageId>Entitlement</PackageId>
+	<Version>1.0.0</Version>
+	<Authors>RichardvZyl</Authors>
+	<Company>GitHub</Company>
+	<PackageDescription>Entitlement extensions that allows or dissalows the right to use and/or access software</PackageDescription>
+	<RepositoryUrl>https://github.com/RichardvZyl/Abstractions</RepositoryUrl>
   </PropertyGroup>
 
   <ItemGroup>

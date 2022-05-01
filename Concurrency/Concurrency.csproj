@@ -4,6 +4,14 @@
     <TargetFramework>net6.0</TargetFramework>
     <ImplicitUsings>enable</ImplicitUsings>
     <Nullable>enable</Nullable>
+	<IncludeSymbols>true</IncludeSymbols>
+	<SymbolPackageFormat>snupkg</SymbolPackageFormat>
+	<PackageId>Concurrency</PackageId>
+    <Version>1.0.0</Version>
+    <Authors>RichardvZyl</Authors>
+    <Company>GitHub</Company>
+    <PackageDescription>Concurrency Ensures that Entities are not being worked on at the same time</PackageDescription>
+    <RepositoryUrl>https://github.com/RichardvZyl/Abstractions</RepositoryUrl>
   </PropertyGroup>
 
 </Project>

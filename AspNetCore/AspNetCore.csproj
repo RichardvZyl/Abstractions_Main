@@ -10,7 +10,7 @@
     <Version>1.0.0</Version>
     <Authors>RichardvZyl</Authors>
     <Company>GitHub</Company>
-    <PackageDescription>This package adds an Octocat!</PackageDescription>
+    <PackageDescription>AspNetCore Extensions for AspNetCore Applications</PackageDescription>
     <RepositoryUrl>https://github.com/RichardvZyl/Abstractions</RepositoryUrl>
   </PropertyGroup>
 

@@ -6,6 +6,12 @@
     <Nullable>enable</Nullable>
 	<IncludeSymbols>true</IncludeSymbols>
 	<SymbolPackageFormat>snupkg</SymbolPackageFormat>
+	<PackageId>Domain</PackageId>
+	<Version>1.0.0</Version>
+	<Authors>RichardvZyl</Authors>
+	<Company>GitHub</Company>
+	<PackageDescription>Domain Extensions for database objects</PackageDescription>
+	<RepositoryUrl>https://github.com/RichardvZyl/Abstractions</RepositoryUrl>
   </PropertyGroup>
 
 </Project>

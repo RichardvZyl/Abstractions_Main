@@ -6,6 +6,12 @@
     <Nullable>enable</Nullable>
 	<IncludeSymbols>true</IncludeSymbols>
 	<SymbolPackageFormat>snupkg</SymbolPackageFormat>
+	<PackageId>Validator</PackageId>
+	<Version>1.0.0</Version>
+	<Authors>RichardvZyl</Authors>
+	<Company>GitHub</Company>
+	<PackageDescription>Fluent Validation abstractions that support the Result pattern</PackageDescription>
+	<RepositoryUrl>https://github.com/RichardvZyl/Abstractions</RepositoryUrl>
   </PropertyGroup>
 
   <ItemGroup>
