@@ -7,7 +7,7 @@
 	<IncludeSymbols>true</IncludeSymbols>
 	<SymbolPackageFormat>snupkg</SymbolPackageFormat>
 	<PackageId>IoC</PackageId>
-	<Version>1.2.0</Version>
+	<Version>1.2.1</Version>
 	<Authors>RichardvZyl</Authors>
 	<Company>GitHub</Company>
 	<PackageDescription>Dependency Injection Abstractions</PackageDescription>
@@ -20,7 +20,6 @@
 
 	<ItemGroup>
     <PackageReference Include="Microsoft.EntityFrameworkCore" Version="6.0.4" />
-    <PackageReference Include="Microsoft.Extensions.Configuration" Version="6.0.1" />
     <PackageReference Include="Microsoft.Extensions.DependencyInjection" Version="6.0.0" />
     <PackageReference Include="Scrutor" Version="4.1.0" />
   </ItemGroup>

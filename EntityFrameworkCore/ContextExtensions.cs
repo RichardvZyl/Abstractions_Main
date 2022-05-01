@@ -1,6 +1,5 @@
 ﻿using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.DependencyInjection;
-using Abstractions.IoC;
 
 namespace Abstractions.EntityFrameworkCore;
 
@@ -9,7 +8,7 @@ public static class ContextExtensions
     /// <summary> Define the current SQL context of the application </summary>
     public static void AddContextUseSQL<T>(this IServiceCollection services) where T : DbContext
     {
-        var connectionString = IoCExtensions.GetConnectionString(services, $"{typeof(T).Name}_SQL");
+        var connectionString = AspNetCore.ServiceExtensions.GetConnectionString(services, $"{typeof(T).Name}_SQL");
 
         services.AddContextMigrate<T>(options => options.UseSqlServer(connectionString));
     }
@@ -17,7 +16,7 @@ public static class ContextExtensions
     /// <summary> Define the current PostgreSQL context of the application  </summary>
     public static void AddContextUsePostgreSQL<T>(this IServiceCollection services) where T : DbContext
     {
-        var connectionString = IoCExtensions.GetConnectionString(services, $"{typeof(T).Name}_Postgres");
+        var connectionString = AspNetCore.ServiceExtensions.GetConnectionString(services, $"{typeof(T).Name}_Postgres");
 
         services.AddContextMigrate<T>(options => options.UseNpgsql(connectionString));
     }

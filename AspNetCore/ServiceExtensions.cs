@@ -3,12 +3,15 @@ using Microsoft.AspNetCore.Http.Features;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Authorization;
 using Microsoft.AspNetCore.StaticFiles;
+using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 
 namespace Abstractions.AspNetCore;
 
-public static class ServiceCollectionExtensions
+public static class ServiceExtensions
 {
+    // TODO :Add Automapper scanning for one to one mappings - automapper not used I prefer factory method but would like to exhibit the ability to do so
+
     public static void AddControllersDefault(this IServiceCollection services)
     {
         static void MvcOptions(MvcOptions options)
@@ -29,4 +32,16 @@ public static class ServiceCollectionExtensions
                options.ValueLengthLimit = int.MaxValue;
                options.MultipartBodyLengthLimit = int.MaxValue;
            });
+
+    public static string GetConnectionString(this IServiceCollection services, string name)
+        => services
+            .BuildServiceProvider()
+            .GetRequiredService<IConfiguration>()
+            .GetConnectionString(name);
+
+    public static string GetSecrets(this IServiceCollection services, string name)
+        => services
+            .BuildServiceProvider()
+            .GetRequiredService<IConfiguration>()
+            .GetSection("Secrets")?[name] ?? string.Empty;
 }

@@ -1,6 +1,5 @@
 ﻿using System.Reflection;
 using Microsoft.EntityFrameworkCore;
-using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Scrutor;
 
@@ -16,21 +15,6 @@ public static class IoCExtensions
              .AsMatchingInterface()
              .WithScopedLifetime());
 
-
-    // TODO :Add Automapper scanning for one to one mappings - automapper not used I prefer factory method but would like to exhibit the ability to do so
-
-    public static string GetConnectionString(this IServiceCollection services, string name)
-        => services
-            .BuildServiceProvider()
-            .GetRequiredService<IConfiguration>()
-            .GetConnectionString(name);
-
-    public static string GetSecrets(this IServiceCollection services, string name) 
-        => services
-            .BuildServiceProvider()
-            .GetRequiredService<IConfiguration>()
-            .GetSection("Secrets")?[name] ?? string.Empty;
-
     public static void AddConfigurationsFromAssembly(this ModelBuilder modelBuilder)
     {
         static bool Expression(Type type)
@@ -44,8 +28,7 @@ public static class IoCExtensions
         configurations.ForEach(configuration
             =>
             {
-                if (configuration is null)
-                    return;
+                if (configuration is null) return;
                 modelBuilder.ApplyConfiguration((dynamic)configuration);
             });
     }
