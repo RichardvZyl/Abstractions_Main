@@ -1,4 +1,4 @@
-name: NuGet Generation
+name: NuGet Generation old
 
 on:
   push:
