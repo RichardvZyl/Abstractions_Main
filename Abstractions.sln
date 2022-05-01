@@ -33,6 +33,8 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Concurrency", "Concurrency\
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Entitlement", "Entitlement\Entitlement.csproj", "{2E1100EE-250A-449D-9A82-95495683FA92}"
 EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Swagger", "Swagger\Swagger.csproj", "{471B8CC8-F35C-4268-9CB3-184C2DED0913}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -99,6 +101,10 @@ Global
 		{2E1100EE-250A-449D-9A82-95495683FA92}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{2E1100EE-250A-449D-9A82-95495683FA92}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{2E1100EE-250A-449D-9A82-95495683FA92}.Release|Any CPU.Build.0 = Release|Any CPU
+		{471B8CC8-F35C-4268-9CB3-184C2DED0913}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{471B8CC8-F35C-4268-9CB3-184C2DED0913}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{471B8CC8-F35C-4268-9CB3-184C2DED0913}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{471B8CC8-F35C-4268-9CB3-184C2DED0913}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
