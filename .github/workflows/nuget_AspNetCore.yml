@@ -27,4 +27,4 @@ jobs:
           dotnet pack -c Release -o out  
 
       - name: Push generated package to GitHub registry
-        run: dotnet nuget push ./AspNetCore/out/*.nupkg --skip-duplicate --no-symbols
+        run: dotnet nuget push ./AspNetCore/out/*.nupkg --setApiKey ${{secrets.NUGET_API_KEY}} --skip-duplicate --no-symbols
