@@ -9,6 +9,8 @@ public static class Regexes
 
     //public const string Email = @"^([a-z0-9_\.\-]{3,})@([\da-z\.\-]{3,})\.([a-z\.]{2,6})$";
 
+    public const string Email = "^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\\.[a-zA-Z]{2,4}$";
+
     public const string Hex = "^#?([a-f0-9]{6}|[a-f0-9]{3})$";
 
     public const string Integer = "^((-?[1-9]+)|[0-9]+)$";
@@ -30,8 +32,6 @@ public static class Regexes
     public const string MobileNumber = @"^((?:\+27|27)|0)(\d{2})-?(\d{3})-?(\d{4})$"; // Chips Mobile number validation
 
     public const string VatNumber = "^[4][0-9]*[0-9]*$"; //starts with 4 with numeric digits
-
-    public const string EmailT = "^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\\.[a-zA-Z]{2,4}$";
 
     public const string Numeric = @"[0-9]$";
 }
