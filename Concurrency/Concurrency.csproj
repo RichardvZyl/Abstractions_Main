@@ -7,7 +7,7 @@
 	<IncludeSymbols>true</IncludeSymbols>
 	<SymbolPackageFormat>snupkg</SymbolPackageFormat>
 	<PackageId>Concurrency</PackageId>
-    <Version>1.0.0</Version>
+    <Version>0.0.1</Version>
     <Authors>RichardvZyl</Authors>
     <Company>GitHub</Company>
     <PackageDescription>Concurrency Ensures that Entities are not being worked on at the same time</PackageDescription>
