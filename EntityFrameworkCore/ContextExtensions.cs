@@ -4,7 +4,7 @@ using Abstractions.IoC;
 
 namespace Abstractions.EntityFrameworkCore;
 
-public static class Extensions
+public static class ContextExtensions
 {
     /// <summary> Define the current SQL context of the application </summary>
     public static void AddContextUseSQL<T>(this IServiceCollection services) where T : DbContext
