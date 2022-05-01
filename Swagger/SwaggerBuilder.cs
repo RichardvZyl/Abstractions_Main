@@ -18,7 +18,7 @@ public static class SwaggerBuilder
         });
     }
 
-    public static void AddSwagger(this IServiceCollection services, string xmlPath)
+    public static void AddSwagger(this IServiceCollection services)
     {
         services.AddSwaggerGen(c =>
         {
@@ -28,7 +28,7 @@ public static class SwaggerBuilder
                 new OpenApiInfo
                 {
                     Version = "v2",
-                    Title = "DemoApplicationAPI v1"
+                    Title = "DemoApplicationAPI v2"
                 });
             c.OperationFilter<RemoveVersionParameterFilter>();
             c.DocumentFilter<ReplaceVersionWithExactValueInPathFilter>();
@@ -48,6 +48,9 @@ public static class SwaggerBuilder
             //    return versions.Any(v => $"v{v.ToString()}" == version)
             //                  && (!maps.Any() || maps.Any(v => $"v{v.ToString()}" == version)); ;
             //});
+
+            var xmlFile = $"{Assembly.GetEntryAssembly()?.GetName().Name}.xml";
+            var xmlPath = Path.Combine(AppContext.BaseDirectory, xmlFile);
 
             c.IncludeXmlComments(xmlPath);
 
