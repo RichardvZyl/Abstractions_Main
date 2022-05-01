@@ -16,10 +16,10 @@ jobs:
     steps:
 
       - name: Checkout repository
-        uses: actions/checkout@v1
+        uses: actions/checkout@v3
 
       - name: Setup .NET Core @ Latest
-        uses: actions/setup-dotnet@v1
+        uses: actions/setup-dotnet@v2
         with:
           source-url: https://nuget.pkg.github.com/<organization>/index.json
         env:
@@ -27,8 +27,7 @@ jobs:
           
       - name: Build solution and generate NuGet package
         run: |  
-          cd <project>
-          dotnet pack -c Release -o out  
+          cd <project> dotnet pack -c Release -o out  
 
       - name: Push generated package to GitHub registry
         run: dotnet nuget push ./<project>/out/*.nupkg --skip-duplicate --no-symbols true
