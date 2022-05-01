@@ -26,7 +26,7 @@ jobs:
 
       - name: Push generated packages to GitHub registry
         run: |
-          cd ../Abstractions/
+          cd ../Abstractions_Main/
           dotnet nuget push ./out/*.nupkg --api-key ${{secrets.NUGET_API_KEY}} --skip-duplicate
         
       
