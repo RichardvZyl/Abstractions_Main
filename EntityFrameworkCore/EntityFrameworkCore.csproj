@@ -7,7 +7,7 @@
 	<IncludeSymbols>true</IncludeSymbols>
 	<SymbolPackageFormat>snupkg</SymbolPackageFormat>
 	<PackageId>EntityFrameworkCore</PackageId>
-	<Version>1.0.0</Version>
+	<Version>1.2.0</Version>
 	<Authors>RichardvZyl</Authors>
 	<Company>GitHub</Company>
 	<PackageDescription>EntityFrameworkCore extensions that allow for easier database interactions with the repository pattern and adding of different types of databases</PackageDescription>
@@ -15,9 +15,12 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <PackageReference Include="Microsoft.AspNetCore.Identity.EntityFrameworkCore" Version="6.0.4" />
+    <PackageReference Include="Microsoft.AspNetCore.Identity.UI" Version="6.0.4" />
     <PackageReference Include="Microsoft.EntityFrameworkCore" Version="6.0.4" />
     <PackageReference Include="Microsoft.EntityFrameworkCore.InMemory" Version="6.0.4" />
     <PackageReference Include="Microsoft.EntityFrameworkCore.SqlServer" Version="6.0.4" />
+    <PackageReference Include="Microsoft.Extensions.Identity.Stores" Version="6.0.4" />
     <PackageReference Include="Npgsql.EntityFrameworkCore.PostgreSQL" Version="6.0.4" />
   </ItemGroup>
 

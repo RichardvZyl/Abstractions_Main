@@ -1,4 +1,6 @@
-﻿using Microsoft.EntityFrameworkCore;
+﻿using Microsoft.AspNetCore.Builder;
+using Microsoft.AspNetCore.Identity;
+using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.DependencyInjection;
 
 namespace Abstractions.EntityFrameworkCore;
@@ -6,37 +8,69 @@ namespace Abstractions.EntityFrameworkCore;
 public static class ContextExtensions
 {
     /// <summary> Define the current SQL context of the application </summary>
-    public static void AddContextUseSQL<T>(this IServiceCollection services) where T : DbContext
+    public static void AddContextUseSQL<TContext>(this IServiceCollection services) where TContext : DbContext
     {
-        var connectionString = AspNetCore.ServiceExtensions.GetConnectionString(services, $"{typeof(T).Name}_SQL");
+        var connectionString = AspNetCore.ServiceExtensions.GetConnectionString(services, $"{typeof(TContext).Name}_SQL");
 
-        services.AddContextMigrate<T>(options => options.UseSqlServer(connectionString));
+        services.AddContextMigrate<TContext>(options => options.UseSqlServer(connectionString));
     }
 
     /// <summary> Define the current PostgreSQL context of the application  </summary>
-    public static void AddContextUsePostgreSQL<T>(this IServiceCollection services) where T : DbContext
+    public static void AddContextUsePostgreSQL<TContext>(this IServiceCollection services) where TContext : DbContext
     {
-        var connectionString = AspNetCore.ServiceExtensions.GetConnectionString(services, $"{typeof(T).Name}_Postgres");
+        var connectionString = AspNetCore.ServiceExtensions.GetConnectionString(services, $"{typeof(TContext).Name}_Postgres");
 
-        services.AddContextMigrate<T>(options => options.UseNpgsql(connectionString));
+        services.AddContextMigrate<TContext>(options => options.UseNpgsql(connectionString));
     }
 
     /// <summary> Define the current InMemoryDatabase context of the application </summary>
-    public static void AddContextUseMemory<T>(this IServiceCollection services) where T : DbContext
+    public static void AddContextUseMemory<TContext>(this IServiceCollection services) where TContext : DbContext
     {
-        services.AddDbContextPool<T>(options
-            => options.UseInMemoryDatabase($"{typeof(T).Name}_InMemory"));
+        services.AddDbContextPool<TContext>(options
+            => options.UseInMemoryDatabase($"{typeof(TContext).Name}_InMemory"));
 
-        _ = services.BuildServiceProvider().GetRequiredService<T>().Database.EnsureCreated();
+        _ = services.BuildServiceProvider().GetRequiredService<TContext>().Database.EnsureCreated();
     }
 
     /// <summary> Apply Migrations </summary>
-    public static void AddContextMigrate<T>(this IServiceCollection services, Action<DbContextOptionsBuilder> options) where T : DbContext
+    public static void AddContextMigrate<TContext>(this IServiceCollection services, Action<DbContextOptionsBuilder> options) where TContext : DbContext
     {
-        _ = services.AddDbContextPool<T>(options);
+        _ = services.AddDbContextPool<TContext>(options);
 
-        services.BuildServiceProvider().GetRequiredService<T>().Database.Migrate();
+        services.BuildServiceProvider().GetRequiredService<TContext>().Database.Migrate();
     }
+
+    public static void AddIdentity<TUser, URole>(this WebApplicationBuilder builder) where TUser : IdentityUser where URole : IdentityRole
+        => builder.Services.AddIdentity<TUser, URole>(options => options.SignIn.RequireConfirmedAccount = true);
+
+    public static void AddIdentityStores<TUser, UContext>(this WebApplicationBuilder builder) where TUser : IdentityUser where UContext : DbContext
+        => builder.Services.AddDefaultIdentity<IdentityUser>(options => options.SignIn.RequireConfirmedAccount = true)
+            .AddEntityFrameworkStores<UContext>();
+
+    public static void AddIdentityServerCore<TContext>(this IServiceCollection serviceCollection) where TContext : DbContext
+    {
+        var builder = serviceCollection.AddIdentityCore<IdentityUser>(options =>
+        {
+            options.Password.RequireDigit = true;
+            options.Password.RequireLowercase = true;
+            options.Password.RequireNonAlphanumeric = true;
+            options.Password.RequireUppercase = true;
+            options.Password.RequiredLength = 6;
+            options.Password.RequiredUniqueChars = 1;
+
+            options.Lockout.DefaultLockoutTimeSpan = TimeSpan.FromMinutes(5);
+            options.Lockout.MaxFailedAccessAttempts = 5;
+            options.Lockout.AllowedForNewUsers = true;
+
+            options.User.AllowedUserNameCharacters =
+            "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789-._@+";
+            options.User.RequireUniqueEmail = true;
+        });
+
+        builder = new IdentityBuilder(builder.UserType, typeof(IdentityRole<Guid>), builder.Services);
+        _ = builder.AddEntityFrameworkStores<TContext>().AddDefaultTokenProviders();
+    }
+
 
     /// <summary> Apply Migrations </summary>
     public static DbSet<T> CommandSet<T>(this DbContext context) where T : class
