@@ -1,6 +1,7 @@
 ﻿using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
+using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 
 namespace Abstractions.EntityFrameworkCore;
@@ -32,8 +33,17 @@ public static class ContextExtensions
         _ = services.BuildServiceProvider().GetRequiredService<TContext>().Database.EnsureCreated();
     }
 
+    public static void AddContextUseSql<T>(this WebApplicationBuilder builder) where T : DbContext
+    {
+        var connectionString = builder.Configuration.GetConnectionString($"DefaultConnection")
+            ?? throw new InvalidOperationException("Connection string 'DefaultConnection' not found.");
+
+        _ = builder.Services.AddDbContext<T>(options =>
+            options.UseSqlServer(connectionString));
+    }
+
     /// <summary> Apply Migrations </summary>
-    public static void AddContextMigrate<TContext>(this IServiceCollection services, Action<DbContextOptionsBuilder> options) where TContext : DbContext
+    private static void AddContextMigrate<TContext>(this IServiceCollection services, Action<DbContextOptionsBuilder> options) where TContext : DbContext
     {
         _ = services.AddDbContextPool<TContext>(options);
 
