@@ -7,7 +7,7 @@
 	<IncludeSymbols>true</IncludeSymbols>
 	<SymbolPackageFormat>snupkg</SymbolPackageFormat>
 	<PackageId>IoC</PackageId>
-	<Version>1.1.0</Version>
+	<Version>1.1.1</Version>
 	<Authors>RichardvZyl</Authors>
 	<Company>GitHub</Company>
 	<PackageDescription>Dependency Injection Abstractions</PackageDescription>

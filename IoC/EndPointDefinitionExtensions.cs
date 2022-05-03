@@ -1,7 +1,7 @@
 ﻿using Microsoft.AspNetCore.Builder;
 using Microsoft.Extensions.DependencyInjection;
 
-namespace IoC;
+namespace Abstractions.IoC;
 
 public interface IEndpointDefintion
 {
@@ -25,6 +25,9 @@ public static class EndPointDefinitionExtensions
                         .Select(Activator.CreateInstance).Cast<IEndpointDefintion>()
                     );
         }
+
+        if (!endpointDefinitions.Any())
+            return;
 
         foreach (var endpointDefinition in endpointDefinitions)
             endpointDefinition.DefineServices(services);
