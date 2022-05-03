@@ -9,20 +9,34 @@ public static class SwaggerBuilder
 {
     public static void AddSwagger(this IApplicationBuilder application)
     {
-        application.UseSwagger();
-        application.UseSwaggerUI(c =>
-        {
-            c.SwaggerEndpoint($"/swagger/v1/swagger.json", $"v1");
-            // Specify an endpoint for v2
-            c.SwaggerEndpoint($"/swagger/v2/swagger.json", $"v2");
-        });
+        var appName = Assembly.GetEntryAssembly()?.GetName().Name;
+
+        _ = application.UseSwagger();
+        _ = application.UseSwaggerUI(c =>
+          {
+              c.SwaggerEndpoint($"/swagger/v1/swagger.json", $"v1{appName}");
+              // Specify an endpoint for v2
+              c.SwaggerEndpoint($"/swagger/v2/swagger.json", $"v2{appName}");
+          });
+    }
+
+    public static void AddSwagger(this WebApplication application)
+    {
+        var appName = Assembly.GetEntryAssembly()?.GetName().Name;
+
+        _ = application.UseSwagger();
+        _ = application.UseSwaggerUI(c
+            => c.SwaggerEndpoint("/swagger/v1/swagger.json", $"v1{appName}")
+        );
     }
 
     public static void AddSwagger(this IServiceCollection services)
     {
+        var appName = Assembly.GetEntryAssembly()?.GetName().Name;
+
         services.AddSwaggerGen(c =>
         {
-            c.SwaggerDoc("v1", new OpenApiInfo { Title = "DemoApplicationAPI v1", Version = "v1" });
+            c.SwaggerDoc("v1", new OpenApiInfo { Title = $"{appName} v1", Version = "v1" });
             // Add a SwaggerDoc for v2 
             c.SwaggerDoc("v2",
                 new OpenApiInfo
@@ -49,7 +63,7 @@ public static class SwaggerBuilder
             //                  && (!maps.Any() || maps.Any(v => $"v{v.ToString()}" == version)); ;
             //});
 
-            var xmlFile = $"{Assembly.GetEntryAssembly()?.GetName().Name}.xml";
+            var xmlFile = $"{appName}.xml";
             var xmlPath = Path.Combine(AppContext.BaseDirectory, xmlFile);
 
             c.IncludeXmlComments(xmlPath);
