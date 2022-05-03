@@ -9,36 +9,35 @@ namespace Abstractions.EntityFrameworkCore;
 public static class ContextExtensions
 {
     /// <summary> Define the current SQL context of the application </summary>
-    public static void AddContextUseSQL<TContext>(this IServiceCollection services) where TContext : DbContext
+    public static void AddContextUseSQL<TContext>(this IServiceCollection services, string? connectionName = null) where TContext : DbContext
     {
-        var connectionString = AspNetCore.ServiceExtensions.GetConnectionString(services, $"{typeof(TContext).Name}_SQL");
+        var connectionString = AspNetCore.ServiceExtensions.GetConnectionString(services, connectionName ?? $"{typeof(TContext).Name}_SQL");
 
         services.AddContextMigrate<TContext>(options => options.UseSqlServer(connectionString));
     }
 
     /// <summary> Define the current PostgreSQL context of the application  </summary>
-    public static void AddContextUsePostgreSQL<TContext>(this IServiceCollection services) where TContext : DbContext
+    public static void AddContextUsePostgreSQL<TContext>(this IServiceCollection services, string? connectionName = null) where TContext : DbContext
     {
-        var connectionString = AspNetCore.ServiceExtensions.GetConnectionString(services, $"{typeof(TContext).Name}_Postgres");
+        var connectionString = AspNetCore.ServiceExtensions.GetConnectionString(services, connectionName ?? $"{typeof(TContext).Name}_Postgres");
 
         services.AddContextMigrate<TContext>(options => options.UseNpgsql(connectionString));
     }
 
     /// <summary> Define the current InMemoryDatabase context of the application </summary>
-    public static void AddContextUseMemory<TContext>(this IServiceCollection services) where TContext : DbContext
+    public static void AddContextUseMemory<TContext>(this IServiceCollection services, string? connectionName = null) where TContext : DbContext
     {
         services.AddDbContextPool<TContext>(options
-            => options.UseInMemoryDatabase($"{typeof(TContext).Name}_InMemory"));
+            => options.UseInMemoryDatabase(connectionName ?? $"{typeof(TContext).Name}_InMemory"));
 
         _ = services.BuildServiceProvider().GetRequiredService<TContext>().Database.EnsureCreated();
     }
 
-    public static void AddContextUseSql<T>(this WebApplicationBuilder builder) where T : DbContext
+    public static void AddContextUseSql<TContext>(this WebApplicationBuilder builder, string? connectionName = null) where TContext : DbContext
     {
-        var connectionString = builder.Configuration.GetConnectionString($"DefaultConnection")
-            ?? throw new InvalidOperationException("Connection string 'DefaultConnection' not found.");
+        var connectionString = builder.Configuration.GetConnectionString(connectionName ?? $"{typeof(TContext).Name}");
 
-        _ = builder.Services.AddDbContext<T>(options =>
+        _ = builder.Services.AddDbContext<TContext>(options =>
             options.UseSqlServer(connectionString));
     }
 

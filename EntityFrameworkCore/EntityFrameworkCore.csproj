@@ -7,7 +7,7 @@
 	<IncludeSymbols>true</IncludeSymbols>
 	<SymbolPackageFormat>snupkg</SymbolPackageFormat>
 	<PackageId>EntityFrameworkCore</PackageId>
-	<Version>1.3.0</Version>
+	<Version>1.4.0</Version>
 	<Authors>RichardvZyl</Authors>
 	<Company>GitHub</Company>
 	<PackageDescription>EntityFrameworkCore extensions that allow for easier database interactions with the repository pattern and adding of different types of databases</PackageDescription>
@@ -26,6 +26,7 @@
 
   <ItemGroup>
     <ProjectReference Include="..\AspNetCore\AspNetCore.csproj" />
+    <ProjectReference Include="..\Domain\Domain.csproj" />
     <ProjectReference Include="..\IoC\IoC.csproj" />
     <ProjectReference Include="..\Repositories\Repositories.csproj" />
   </ItemGroup>
