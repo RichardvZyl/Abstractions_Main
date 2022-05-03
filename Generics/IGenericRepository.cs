@@ -1,12 +1,15 @@
-﻿namespace Abstractions.Generics;
+﻿using Abstractions.Domain;
 
-public interface IGenericRepository<T, TId>
+namespace Abstractions.Generics;
+
+public interface IGenericRepository<TEntity, TId> where TEntity : Entity<TId> where TId : struct
 {
-    Task<TId> Create(T model);
-    Task<T> GetById(TId id);
-    Task<IEnumerable<T>> ReadList();
-    Task<bool> Update(T model);
-    Task<bool> Delete(TId id);
+    Task<TId> CreateAsync(TEntity entity);
+    Task<TEntity> GetByIdAsync(TId id);
+    Task<IEnumerable<TEntity>> ListAsync();
+    Task<bool> UpdateAsync(TEntity entity);
+    Task<bool> DeleteAsync(TId id);
 
-    Task<IDictionary<TId, T>> GetTable();
+    Task<IDictionary<TId, TEntity>> GetTableAsync();
 }
+
