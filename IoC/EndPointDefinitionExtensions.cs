@@ -21,17 +21,13 @@ public static class EndPointDefinitionExtensions
         {
             endpointDefinitions.AddRange(
                 marker.Assembly.ExportedTypes
-                        .Where(x => typeof(IEndpointDefintion).IsAssignableFrom(x) && !x.IsAbstract)
+                        .Where(x => typeof(IEndpointDefintion).IsAssignableFrom(x) && !x.IsInterface && !x.IsAbstract)
                         .Select(Activator.CreateInstance).Cast<IEndpointDefintion>()
                     );
         }
 
-        if (!endpointDefinitions.Any())
-            return;
-
         foreach (var endpointDefinition in endpointDefinitions)
             endpointDefinition.DefineServices(services);
-
 
         _ = services.AddSingleton(endpointDefinitions as IReadOnlyCollection<IEndpointDefintion>);
     }
