@@ -9,7 +9,5 @@ public interface IGenericRepository<TEntity, TId> where TEntity : Entity<TId> wh
     Task<IEnumerable<TEntity>> ListAsync();
     Task<bool> UpdateAsync(TEntity entity);
     Task<bool> DeleteAsync(TId id);
-
-    Task<IDictionary<TId, TEntity>> GetTableAsync();
 }
 
