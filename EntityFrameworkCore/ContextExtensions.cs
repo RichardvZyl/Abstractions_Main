@@ -11,7 +11,7 @@ public static class ContextExtensions
     /// <summary> Define the current SQL context of the application </summary>
     public static void AddContextUseSQL<TContext>(this IServiceCollection services, string? connectionName = null) where TContext : DbContext
     {
-        var connectionString = AspNetCore.ServiceExtensions.GetConnectionString(services, connectionName ?? $"{typeof(TContext).Name}_SQL");
+        var connectionString = AspNetCore.ServiceExtensions.GetConnectionString(services, connectionName ?? $"{typeof(TContext).Name}");
 
         services.AddContextMigrate<TContext>(options => options.UseSqlServer(connectionString));
     }
@@ -19,16 +19,16 @@ public static class ContextExtensions
     /// <summary> Define the current PostgreSQL context of the application  </summary>
     public static void AddContextUsePostgreSQL<TContext>(this IServiceCollection services, string? connectionName = null) where TContext : DbContext
     {
-        var connectionString = AspNetCore.ServiceExtensions.GetConnectionString(services, connectionName ?? $"{typeof(TContext).Name}_Postgres");
+        var connectionString = AspNetCore.ServiceExtensions.GetConnectionString(services, connectionName ?? $"{typeof(TContext).Name}");
 
         services.AddContextMigrate<TContext>(options => options.UseNpgsql(connectionString));
     }
 
     /// <summary> Define the current InMemoryDatabase context of the application </summary>
-    public static void AddContextUseMemory<TContext>(this IServiceCollection services, string? connectionName = null) where TContext : DbContext
+    public static void AddContextUseInMemory<TContext>(this IServiceCollection services, string? connectionName = null) where TContext : DbContext
     {
         services.AddDbContextPool<TContext>(options
-            => options.UseInMemoryDatabase(connectionName ?? $"{typeof(TContext).Name}_InMemory"));
+            => options.UseInMemoryDatabase(connectionName ?? $"{nameof(TContext)}"));
 
         _ = services.BuildServiceProvider().GetRequiredService<TContext>().Database.EnsureCreated();
     }
