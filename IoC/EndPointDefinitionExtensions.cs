@@ -21,7 +21,7 @@ public static class EndPointDefinitionExtensions
         {
             endpointDefinitions.AddRange(
                 marker.Assembly.ExportedTypes
-                        .Where(x => typeof(IEndpointDefintion).IsAssignableFrom(x) && !x.IsInterface && !x.IsAbstract)
+                        .Where(x => typeof(IEndpointDefintion).IsAssignableFrom(x) && !x.IsAbstract)
                         .Select(Activator.CreateInstance).Cast<IEndpointDefintion>()
                     );
         }
