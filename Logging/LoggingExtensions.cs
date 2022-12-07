@@ -1,6 +1,7 @@
 ﻿
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.Hosting;
+using Microsoft.Extensions.Logging;
 using Serilog;
 
 namespace Abstractions.Logging;
@@ -19,7 +20,5 @@ public static class LoggingExtensions
         _ = SerilogHostBuilderExtensions.UseSerilog(builder);
 
         return builder;
-
-
     }
 }
