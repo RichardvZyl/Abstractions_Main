@@ -8,7 +8,7 @@ namespace Abstractions.Logging;
 
 public static class LoggingExtensions
 {
-    public static IHostBuilder UseSerilog(this IHostBuilder builder)
+    public static IHostBuilder UseSerilog(IHostBuilder builder)
     {
         var configuration = new ConfigurationBuilder()
                 .AddJsonFile("AppSettings.json")
