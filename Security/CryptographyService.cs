@@ -21,8 +21,6 @@ public class CryptographyService : ICryptographyService
 
     public async Task<string> Decrypt(string value, string salt)
     {
-        return value;
-
         using var algorithm = Algorithm(salt);
 
         return Encoding.Unicode.GetString(await Transform(Convert.FromBase64String(value), algorithm.CreateDecryptor(), CryptoStreamMode.Read));
@@ -33,8 +31,6 @@ public class CryptographyService : ICryptographyService
 
     public async Task<string> Encrypt(string value, string salt)
     {
-        return value;
-
         using var algorithm = Algorithm(salt);
 
         return Convert.ToBase64String(await Transform(Encoding.Unicode.GetBytes(value), algorithm.CreateEncryptor(), CryptoStreamMode.Write));
@@ -86,7 +82,7 @@ public class CryptographyService : ICryptographyService
         if (string.IsNullOrWhiteSpace(salt))
             salt = Key;
 
-        using var key = new Rfc2898DeriveBytes(Key, Encoding.Unicode.GetBytes(salt));
+        using var key = new Rfc2898DeriveBytes(Encoding.Unicode.GetBytes(Key), Encoding.Unicode.GetBytes(salt), 1, HashAlgorithmName.SHA256);
         using var algorithm = Aes.Create();
 
         algorithm.Padding = PaddingMode.PKCS7;

@@ -37,7 +37,7 @@ public static class ServiceExtensions
         => services
             .BuildServiceProvider()
             .GetRequiredService<IConfiguration>()
-            .GetConnectionString(name);
+            .GetConnectionString(name) ?? string.Empty;
 
     public static string GetSecrets(this IServiceCollection services, string name)
         => services

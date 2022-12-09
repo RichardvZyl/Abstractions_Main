@@ -1,13 +1,13 @@
 <Project Sdk="Microsoft.NET.Sdk">
 
   <PropertyGroup>
-    <TargetFramework>net6.0</TargetFramework>
+    <TargetFramework>net7.0</TargetFramework>
     <ImplicitUsings>enable</ImplicitUsings>
     <Nullable>enable</Nullable>
 	<IncludeSymbols>true</IncludeSymbols>
 	<SymbolPackageFormat>snupkg</SymbolPackageFormat>
 	<PackageId>AuditTrail</PackageId>
-	<Version>0.0.2</Version>
+	<Version>0.0.3</Version>
 	<Authors>RichardvZyl</Authors>
 	<Company>GitHub</Company>
 	<PackageDescription>Abstractions that allows for AuditTrails to be kept</PackageDescription>
